@@ -1,10 +1,24 @@
-import React from 'react';
+import { lazy, Suspense } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import "tailwindcss/tailwind.css";
+import * as ROUTES from './constants/routes';
 
-function App() {
+const Home: React.LazyExoticComponent<() => JSX.Element> = lazy(() => import('./screens/Home'));
+
+const App: React.FC = () => {
   return (
     <div className="App">
-      Hi
+      <Router>
+        <Suspense fallback={<p>Loading ...</p>}>
+          <Switch>
+            <Route path={ROUTES.HOME} component={Home} exact />
+          </Switch>
+        </Suspense>
+      </Router>
     </div>
   );
 }
