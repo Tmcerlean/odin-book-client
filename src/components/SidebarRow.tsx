@@ -8,7 +8,7 @@ interface SidebarRowProps {
 
 const SidebarRow: React.FC<SidebarRowProps> = ({ src, Icon, title }) => {
     return (
-        <div className="">
+        <div className="flex items-center space-x-2 p-4 hover:bg-gray-200 rounded-xl cursor-pointer">
             {src && (
                 <img className="rounded-full" src={src} alt="" width="30" height="30" />            
             )}

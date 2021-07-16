@@ -15,11 +15,11 @@ import {
 
 const Header: React.FC = () => {
     return (
-        <div className="flex sticky top-8 z-50 p-2 bg-white justify-between items-center shadow-md">
+        <div className="flex sticky top-0 z-50 p-2 bg-white justify-between items-center shadow-md">
             {/* Left */}
             <div className="flex items-center">
                 <div>
-                    <h1 className="text-6xl">Logo.</h1>
+                    <h1 className="text-6xl">Odinbook</h1>
                 </div>
             </div>
 
