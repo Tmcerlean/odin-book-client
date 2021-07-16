@@ -2,7 +2,7 @@ import React from "react";
 
 interface SidebarRowProps {
     src?: string
-    Icon?: React.SVGProps<SVGSVGElement>
+    Icon?: React.ComponentType<React.ComponentProps<'svg'>>
     title: string
 };
 
