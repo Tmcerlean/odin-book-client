@@ -25,7 +25,7 @@ const Header: React.FC = () => {
 
             {/* Right */}
             <div className="flex items-center">
-                <img src="" alt="profile" width="40" height="40" className="border rounded-full cursor-pointer mr-2" />
+                <img src="https://i.ibb.co/42drhRP/mcerleantom-79390488-2535626826491703-1307724872187531610-n-1.jpg" alt="profile" width="40" height="40" className="border rounded-full cursor-pointer mr-2" />
                 <p className="whitespace-nowrap font-semibold pr-3">Tom McErlean</p>
             </div>
         </div>    
