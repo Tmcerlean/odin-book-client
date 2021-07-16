@@ -21,12 +21,12 @@ const InputBox: React.FC = () => {
                     <input 
                         type="text" 
                         placeholder="What's your story?"
-                        className="rounded-full h-12 bg-gray-100 flex-grow px-5 focus:outline-none"
+                        className="rounded-full h-12 bg-gray-100 flex-grow px-5 border-none focus:outline-none"
                     />
                 </form>
             </div>
             <div className="flex justify-center p-3 border-t">
-                <div className="inputIcon">
+                <div className="flex items-center space-x-1 hover:bg-gray-100 flex-grow justify-center p-2 rounded-xl cursor-pointer">
                     <CameraIcon className="h-7 text-green-400" />
                     <p className="text-xs sm:text-sm xl:text-base">Add Photo</p>
                 </div>

@@ -1,18 +1,3 @@
-import {
-    BellIcon,
-    ChatIcon,
-    ChevronDownIcon,
-    HomeIcon,
-    UserGroupIcon,
-    ViewGridIcon
-} from '@heroicons/react/solid';
-import {
-    FlagIcon,
-    PlayIcon,
-    SearchIcon,
-    ShoppingCartIcon
-} from '@heroicons/react/outline';
-
 const Header: React.FC = () => {
     return (
         <div className="flex sticky top-0 z-50 p-2 bg-white justify-between items-center shadow-md">
