@@ -1,4 +1,5 @@
 import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 
 const Home = () => {
     return (
@@ -8,7 +9,7 @@ const Home = () => {
             </Header>
             
             <main>
-                {/* Sidebar */}
+                <Sidebar />
                 {/* Feed */}
                 {/* Widgets */}
             </main>

@@ -3,10 +3,6 @@ module.exports = {
     darkMode: false,
     theme: {
       extend: {},
-      colors: {
-        transparent: 'transparent',
-        current: 'currentColor'
-      }
     },
     variants: {
       extend: {},
