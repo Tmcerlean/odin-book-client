@@ -1,4 +1,5 @@
 import Feed from '../components/Feed';
+import Friends from '../components/Friends';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
@@ -12,7 +13,7 @@ const Home = () => {
             <main className="flex">
                 <Sidebar />
                 <Feed />
-                {/* Widgets */}
+                <Friends />
             </main>
         </div>
     )
