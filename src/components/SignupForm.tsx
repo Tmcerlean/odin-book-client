@@ -10,7 +10,7 @@ const SignupForm: React.FC = () => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
+    const [email, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [signupErr, setSignupErr] = useState(false);
 
