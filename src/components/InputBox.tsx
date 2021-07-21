@@ -8,7 +8,7 @@ const InputBox: React.FC = () => {
     }
 
     return (
-        <div className="bg-white p-2 rounded-2xl shadow-md text-gray-500 font-medium mt-6">
+        <div className="bg-white mt-6 p-2 rounded-2xl shadow-md text-gray-500 font-medium">
             <div className="flex space-x-4 p-4 items-center">
                 <img 
                     className="rounded-full"

@@ -3,7 +3,8 @@ const Header: React.FC = () => {
         <div className="flex sticky top-0 z-50 p-2 bg-white justify-between items-center shadow-md">
             <div className="flex items-center">
                 <div>
-                    <h1 className="text-6xl">Odinbook</h1>
+                    {/* <h1 className="text-6xl">Odinbook</h1> */}
+                    <img src="https://i.ibb.co/QNwKXv4/oie-p9-SMIiwr8a5-H.png" alt="" width="50" />
                 </div>
             </div>
             <div className="flex items-center">
