@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react';
+import { Suspense, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,9 +6,10 @@ import {
 } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 import * as ROUTES from './constants/routes';
+import Header from './components/Header';
+import Home from './screens/Home';
 import Login from './screens/Login';
-
-const Home: React.LazyExoticComponent<() => JSX.Element> = lazy(() => import('./screens/Home'));
+import Signup from './screens/Signup';
 
 const App: React.FC = () => {
 
@@ -19,14 +20,18 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <Header />
       <Router>
         <Suspense fallback={<p>Loading ...</p>}>
           <Switch>
             <Route path={ROUTES.HOME} exact>
-              <Home />
+              <Home userAuth={userAuth} setUserAuth={setUserAuth} />
             </Route>
             <Route path={ROUTES.LOGIN}>
               <Login userAuth={userAuth} setUserAuth={setUserAuth} />
+            </Route>
+            <Route path={ROUTES.SIGNUP}>
+              <Signup userAuth={userAuth} setUserAuth={setUserAuth} />
             </Route>
           </Switch>
         </Suspense>

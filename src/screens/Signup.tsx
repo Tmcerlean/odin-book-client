@@ -1,28 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import LoginForm from '../components/LoginForm';
+import SignupForm from '../components/SignupForm';
 
-interface LoginProps {
+interface SignupProps {
     userAuth: boolean
     setUserAuth: React.Dispatch<React.SetStateAction<boolean>>
 };
 
-const Login: React.FC<LoginProps> = ({ userAuth, setUserAuth }) => {
-
-    let history = useHistory();
-
-    useEffect(() => {
-        document.title = 'Odinbook - Login';
-    }, []);
-
-    const handleLogIn = () => {
-
-    };
-
-    const handleFBLogIn = () => {
-
-    };
-
+const Signup: React.FC<SignupProps> = ({ userAuth, setUserAuth }) => {
     return (
         <div className="h-screen flex flex-wrap justify-center content-start mt-40">
             <div className="flex justify-center items-center w-96">
@@ -32,11 +15,11 @@ const Login: React.FC<LoginProps> = ({ userAuth, setUserAuth }) => {
             </div>
             <div className="flex justify-center items-center w-96">
                 <div className="">
-                    <LoginForm />
+                    <SignupForm />
                 </div>
             </div>
         </div>
     )
 }
 
-export default Login;
+export default Signup;
