@@ -48,7 +48,7 @@ const Signup: React.FC<SignupProps> = ({ userAuth, setUserAuth }) => {
     }
 
     return (
-        <div className="h-screen flex flex-wrap justify-center content-start mt-40">
+        <div className="flex flex-wrap justify-center content-start mt-32">
             <div className="flex justify-center items-center w-96">
                 <div className="">
                     <h1 className="text-3xl font-extrabold">ODINBOOK.</h1>

@@ -12,7 +12,6 @@ const LoginForm: React.FC = () => {
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [signupErr, setSignupErr] = useState(false);
 
     const isEmailValid = email.length > 0;
     const isPasswordValid = (password !== '' && password.length > 5);
@@ -20,7 +19,7 @@ const LoginForm: React.FC = () => {
 
     return (
         <div className="w-full max-w-xs">
-            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form className="shadow-md rounded px-8 pt-6 pb-8 mb-4 bg-gray-50">
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                         Email

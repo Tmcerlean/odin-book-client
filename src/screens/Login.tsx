@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 import LoginForm from '../components/LoginForm';
 
 interface LoginProps {
@@ -8,8 +7,6 @@ interface LoginProps {
 };
 
 const Login: React.FC<LoginProps> = ({ userAuth, setUserAuth }) => {
-
-    let history = useHistory();
 
     useEffect(() => {
         document.title = 'Odinbook - Login';
@@ -24,7 +21,7 @@ const Login: React.FC<LoginProps> = ({ userAuth, setUserAuth }) => {
     };
 
     return (
-        <div className="h-screen flex flex-wrap justify-center content-start mt-40">
+        <div className="flex flex-wrap justify-center content-start mt-40">
             <div className="flex justify-center items-center w-96">
                 <div className="">
                     <h1 className="text-3xl font-extrabold">ODINBOOK.</h1>
