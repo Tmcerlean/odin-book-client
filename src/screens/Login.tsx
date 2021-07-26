@@ -12,9 +12,38 @@ const Login: React.FC<LoginProps> = ({ userAuth, setUserAuth }) => {
         document.title = 'Odinbook - Login';
     }, []);
 
-    const handleLogIn = () => {
+    const handleLogIn = async (e: Event, email: String, password: String) => {
+        
+        e.preventDefault();
 
-    };
+        const data = { email, password };
+        const formData = JSON.stringify(data);
+
+        try {
+            const req = await fetch(
+                "http://localhost:5000/api/login",
+                {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    },
+                }
+            );
+            const myJson = await req.json();
+            if (req.status !== 200) {
+                // setLoginErr(true);
+                return;
+            }
+            localStorage.setItem("token", myJson);
+            // localStorage.setItem("userAuth", "true");
+            // history.go(0)
+        } catch (err) {
+            console.log(err)
+            // setLoginErr(true);
+        }
+    }
 
     const handleFBLogIn = () => {
 

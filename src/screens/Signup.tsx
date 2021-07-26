@@ -15,36 +15,51 @@ const Signup: React.FC<SignupProps> = ({ userAuth, setUserAuth }) => {
         document.title = 'Odinbook - Signup';
     }, []);
 
-    const handleSignUp = async (e: Event, firstName: String, lastName: String, email: String, password: String) => {
+    const handleSignUp = async (e: React.FormEvent<HTMLFormElement>, firstName: String, lastName: String, email: String, password: String) => {
 
-        e.preventDefault();
+      e.preventDefault();
 
-        const data = {firstName, lastName, email, password}
-        const formData = JSON.stringify(data);
+      const data = {first_name: firstName, last_name: lastName, email, password}
+      const formData = JSON.stringify(data);
 
-        try {
-          const req = await fetch(
-            "https://localhost:3000/api/signup",
-            {
-              method: "POST",
-              body: formData,
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const myJson = await req.json();
-          if (req.status !== 200) {
-            // setSignupErr(true);
-            return;
+      try {
+        const req = await fetch(
+          "http://localhost:5000/api/signup",
+          {
+            method: "POST",
+            body: formData,
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
           }
-          localStorage.setItem("token", myJson.token);
-          localStorage.setItem("userAuth", true as any);
-          history.go(0)
-        } catch (err) {
-        //   setSignupErr(true);
+        );
+        const jsonUserData = await req.json();
+
+        const newUser = {
+          email: jsonUserData.user.email,
+          firstName: jsonUserData.user.firstName,
+          lastName: jsonUserData.user.lastName,
+          id: jsonUserData.user.id,
+          profileImageUrl: jsonUserData.user.profileImageUrl,
+          token: jsonUserData.token.token
+        } 
+
+        // Create new user object to string prior to saving to local storage
+        const stringNewUserData = await JSON.stringify(newUser);
+        
+        // Error handling
+        if (req.status !== 200) {
+          // setSignupErr(true);
+          return;
         }
+        
+        localStorage.setItem("user", stringNewUserData);
+        localStorage.setItem("userAuth", true as any);
+        history.go(0)
+      } catch (err) {
+      //   setSignupErr(true);
+      }
     }
 
     return (
@@ -56,7 +71,7 @@ const Signup: React.FC<SignupProps> = ({ userAuth, setUserAuth }) => {
             </div>
             <div className="flex justify-center items-center w-96">
                 <div className="">
-                    <SignupForm />
+                    <SignupForm handleSignUp={handleSignUp} />
                 </div>
             </div>
         </div>
