@@ -2,17 +2,17 @@ import { useEffect } from 'react';
 import LoginForm from '../components/LoginForm';
 
 interface LoginProps {
-    userAuth: boolean
-    setUserAuth: React.Dispatch<React.SetStateAction<boolean>>
+    user: string
+    setUser: React.Dispatch<string>
 };
 
-const Login: React.FC<LoginProps> = ({ userAuth, setUserAuth }) => {
+const Login: React.FC<LoginProps> = ({ user, setUser }) => {
 
     useEffect(() => {
         document.title = 'Odinbook - Login';
     }, []);
 
-    const handleLogIn = async (e: Event, email: string, password: string) => {
+    const handleLogIn = async (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => {
         
         e.preventDefault();
 
@@ -31,13 +31,30 @@ const Login: React.FC<LoginProps> = ({ userAuth, setUserAuth }) => {
                     },
                 }
             );
-            const myJson = await req.json();
+
+            const jsonUserData = await req.json();
+
+            // Error handling
             if (req.status !== 200) {
                 // setLoginErr(true);
                 return;
             }
-            localStorage.setItem("token", myJson);
-            // localStorage.setItem("userAuth", "true");
+
+            const user = {
+                email: jsonUserData.user.email,
+                firstName: jsonUserData.user.firstName,
+                lastName: jsonUserData.user.lastName,
+                id: jsonUserData.user.id,
+                profileImageUrl: jsonUserData.user.profileImageUrl,
+                token: jsonUserData.token.token
+            }
+
+            // Create new user object to string
+            const stringLoggedInUserData = await JSON.stringify(user);
+            
+            // Save new string to local storage
+            localStorage.setItem("user", stringLoggedInUserData);
+
             // history.go(0)
         } catch (err) {
             console.log(err)
@@ -58,7 +75,7 @@ const Login: React.FC<LoginProps> = ({ userAuth, setUserAuth }) => {
             </div>
             <div className="flex justify-center items-center w-96">
                 <div className="">
-                    <LoginForm />
+                    <LoginForm handleLogIn={handleLogIn} />
                 </div>
             </div>
         </div>

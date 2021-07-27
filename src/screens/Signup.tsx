@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom';
 import SignupForm from '../components/SignupForm';
 
 interface SignupProps {
-    userAuth: boolean
-    setUserAuth: React.Dispatch<React.SetStateAction<boolean>>
+  user: string
+  setUser: React.Dispatch<string>
 };
 
-const Signup: React.FC<SignupProps> = ({ userAuth, setUserAuth }) => {
+const Signup: React.FC<SignupProps> = ({ user, setUser }) => {
 
     let history = useHistory();
 
@@ -42,7 +42,7 @@ const Signup: React.FC<SignupProps> = ({ userAuth, setUserAuth }) => {
           return;
         }
 
-        const newUser = {
+        const user = {
           email: jsonUserData.user.email,
           firstName: jsonUserData.user.firstName,
           lastName: jsonUserData.user.lastName,
@@ -52,7 +52,7 @@ const Signup: React.FC<SignupProps> = ({ userAuth, setUserAuth }) => {
         }
 
         // Create new user object to string
-        const stringNewUserData = await JSON.stringify(newUser);
+        const stringNewUserData = await JSON.stringify(user);
         
         // Save new string to local storage
         localStorage.setItem("user", stringNewUserData);

@@ -1,10 +1,11 @@
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
 import "tailwindcss/tailwind.css";
+import useLocalStorage from './hooks/useLocalStorage';
 import * as ROUTES from './constants/routes';
 import Header from './components/Header';
 import Home from './screens/Home';
@@ -13,10 +14,7 @@ import Signup from './screens/Signup';
 
 const App: React.FC = () => {
 
-  const [userAuth, setUserAuth] = useState(() => {
-    const user = localStorage.getItem("userAuth");
-    return !!user;
-  });
+  const [user, setUser] = useLocalStorage("user", "");
 
   return (
     <div className="App">
@@ -25,13 +23,13 @@ const App: React.FC = () => {
         <Suspense fallback={<p>Loading ...</p>}>
           <Switch>
             <Route path={ROUTES.HOME} exact>
-              <Home userAuth={userAuth} setUserAuth={setUserAuth} />
+              <Home user={user} setUser={setUser} />
             </Route>
             <Route path={ROUTES.LOGIN}>
-              <Login userAuth={userAuth} setUserAuth={setUserAuth} />
+              <Login user={user} setUser={setUser} />
             </Route>
             <Route path={ROUTES.SIGNUP}>
-              <Signup userAuth={userAuth} setUserAuth={setUserAuth} />
+              <Signup user={user} setUser={setUser} />
             </Route>
           </Switch>
         </Suspense>

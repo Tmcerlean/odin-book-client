@@ -4,15 +4,16 @@ import Friends from '../components/Friends';
 import Sidebar from '../components/Sidebar';
 
 interface HomeProps {
-    userAuth: boolean
-    setUserAuth: React.Dispatch<React.SetStateAction<boolean>>
+
+    user: string
+    setUser: React.Dispatch<string>
 };
 
-const Home: React.FC<HomeProps> = ({ userAuth, setUserAuth }) => {
+const Home: React.FC<HomeProps> = ({ user, setUser }) => {
 
     let history = useHistory();
 
-    if (!userAuth) {
+    if (!user) {
         history.push("/login");
     };
 
