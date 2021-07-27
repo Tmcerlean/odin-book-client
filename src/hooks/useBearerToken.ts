@@ -1,16 +1,26 @@
-const useBearerToken = () => {
+import { useState } from "react";
 
-    // Take in user string
+interface UserObject extends Object {
+    email: string
+    firstName: string
+    lastName: string
+    id: string
+    profileImageUrl: string
+    token: string
+}
 
-    // Parse string into object
+const useBearerToken = (userObject: UserObject) => { // Get object (parameter) from useLocalStorage hook
 
-    // Store user object in one variable
-
-    // Store bearer token in another variable
-
-    // Return both variables so they are accessible throughout application
+    const [bearerToken, setBearerToken] = useState(() => {
+        try {
+            return userObject.token;
+        } catch (error) {
+            console.error(`Unable to store a new value for ${key} in localStorage`);
+            return '';
+        }
+    });
     
-    return;
+    return bearerToken;
 };
 
 export default useBearerToken;
