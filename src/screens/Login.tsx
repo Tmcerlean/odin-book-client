@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import LoginForm from '../components/LoginForm';
 
 interface LoginProps {
     user: string
-    setUser: React.Dispatch<string>
+    setUser: React.Dispatch<any>
 };
 
 const Login: React.FC<LoginProps> = ({ user, setUser }) => {
@@ -11,6 +12,12 @@ const Login: React.FC<LoginProps> = ({ user, setUser }) => {
     useEffect(() => {
         document.title = 'Odinbook - Login';
     }, []);
+
+    let history = useHistory();
+
+    if (user) {
+        history.push("/");
+    };
 
     const handleLogIn = async (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => {
         
@@ -40,7 +47,7 @@ const Login: React.FC<LoginProps> = ({ user, setUser }) => {
                 return;
             }
 
-            const user = {
+            const loggedInUser = {
                 email: jsonUserData.user.email,
                 firstName: jsonUserData.user.firstName,
                 lastName: jsonUserData.user.lastName,
@@ -50,12 +57,13 @@ const Login: React.FC<LoginProps> = ({ user, setUser }) => {
             }
 
             // Create new user object to string
-            const stringLoggedInUserData = await JSON.stringify(user);
+            const stringLoggedInUserData = await JSON.stringify(loggedInUser);
             
             // Save new string to local storage
             localStorage.setItem("user", stringLoggedInUserData);
 
-            // history.go(0)
+            setUser(loggedInUser);
+            history.push("/");
         } catch (err) {
             console.log(err)
             // setLoginErr(true);
