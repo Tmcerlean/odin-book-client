@@ -15,7 +15,7 @@ const useBearerToken = (userObject: UserObject) => { // Get object (parameter) f
         try {
             return userObject.token;
         } catch (error) {
-            console.error(`Unable to store a new value for ${key} in localStorage`);
+            console.error(`There is currently no bearer token set in localStorage`);
             return '';
         }
     });
