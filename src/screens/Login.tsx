@@ -12,7 +12,7 @@ const Login: React.FC<LoginProps> = ({ userAuth, setUserAuth }) => {
         document.title = 'Odinbook - Login';
     }, []);
 
-    const handleLogIn = async (e: Event, email: String, password: String) => {
+    const handleLogIn = async (e: Event, email: string, password: string) => {
         
         e.preventDefault();
 

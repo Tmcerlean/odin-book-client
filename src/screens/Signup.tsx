@@ -15,7 +15,7 @@ const Signup: React.FC<SignupProps> = ({ userAuth, setUserAuth }) => {
         document.title = 'Odinbook - Signup';
     }, []);
 
-    const handleSignUp = async (e: React.FormEvent<HTMLFormElement>, firstName: String, lastName: String, email: String, password: String) => {
+    const handleSignUp = async (e: React.FormEvent<HTMLFormElement>, firstName: string, lastName: string, email: string, password: string) => {
 
       e.preventDefault();
 

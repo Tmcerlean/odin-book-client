@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 
-const useFetch = (url: RequestInfo, options: Object) => {
+const useFetch = (url: RequestInfo, options: RequestInit | undefined) => {
+
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
@@ -18,6 +20,7 @@ const useFetch = (url: RequestInfo, options: Object) => {
         };
         fetchData();
     }, []);
+    
     return { response, error, isLoading };
 };
 

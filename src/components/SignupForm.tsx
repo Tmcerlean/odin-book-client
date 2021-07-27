@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 
 interface SignupFormProps {
-    handleSignUp: (e: React.FormEvent<HTMLFormElement>, firstName: String, lastName: String, email: String, password: String) => Promise<void>
+    handleSignUp: (e: React.FormEvent<HTMLFormElement>, firstName: string, lastName: string, email: string, password: string) => Promise<void>
 };
 
 const SignupForm: React.FC<SignupFormProps> = ({handleSignUp}) => {

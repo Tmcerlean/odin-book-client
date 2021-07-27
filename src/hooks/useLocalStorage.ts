@@ -1,19 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-// Hook to store user and bearer token object in local storage
-const useLocalStorage = () => {
+const useLocalStorage = (key: string = '', initialValue: string = '') => {
   
-  // Take in user string
+  const [state, setState] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      return initialValue;
+    }
+  });
 
-  // Parse string into object
+  const setLocalStorageState = (newState: any) => {
+    try {
+      const newStateValue = typeof newState === 'function' ? newState(state) : newState;
+      setState(newStateValue);
+      window.localStorage.setItem(key, JSON.stringify(newStateValue));
+    } catch (error) {
+      console.error(`Unable to store a new value for ${key} in localStorage`);
+    }
+  };
 
-  // Store user object in one variable
-
-  // Store bearer token in another variable
-
-  // Return both variables so they are accessible throughout application
-
-  return;
+  return [state, setLocalStorageState];
 };
 
 export default useLocalStorage;
