@@ -30,11 +30,17 @@ const Signup: React.FC<SignupProps> = ({ userAuth, setUserAuth }) => {
             body: formData,
             headers: {
               Accept: "application/json",
-              "Content-Type": "application/json",
+              "Content-Type": "application/json"
             },
           }
         );
         const jsonUserData = await req.json();
+
+        // Error handling
+        if (req.status !== 200) {
+          // setSignupErr(true);
+          return;
+        }
 
         const newUser = {
           email: jsonUserData.user.email,
@@ -43,20 +49,15 @@ const Signup: React.FC<SignupProps> = ({ userAuth, setUserAuth }) => {
           id: jsonUserData.user.id,
           profileImageUrl: jsonUserData.user.profileImageUrl,
           token: jsonUserData.token.token
-        } 
+        }
 
-        // Create new user object to string prior to saving to local storage
+        // Create new user object to string
         const stringNewUserData = await JSON.stringify(newUser);
         
-        // Error handling
-        if (req.status !== 200) {
-          // setSignupErr(true);
-          return;
-        }
-        
+        // Save new string to local storage
         localStorage.setItem("user", stringNewUserData);
-        localStorage.setItem("userAuth", true as any);
-        history.go(0)
+        
+        // history.go(0)
       } catch (err) {
       //   setSignupErr(true);
       }
