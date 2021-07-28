@@ -54,7 +54,7 @@ const Login: React.FC<LoginProps> = ({ user, setUser }) => {
                 id: jsonUserData.user.id,
                 profileImageUrl: jsonUserData.user.profileImageUrl,
                 token: jsonUserData.token.token
-            }
+            };
 
             // Create new user object to string
             const stringLoggedInUserData = await JSON.stringify(loggedInUser);
@@ -70,9 +70,10 @@ const Login: React.FC<LoginProps> = ({ user, setUser }) => {
         }
     }
 
-    const handleFBLogIn = () => {
-
-    };
+    const handleFacebookLogIn = async (e: React.FormEvent<HTMLFormElement>) => {
+        // TODO
+        e.preventDefault();
+    }
 
     return (
         <div className="flex flex-wrap justify-center content-start mt-40">

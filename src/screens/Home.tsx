@@ -4,7 +4,6 @@ import Friends from '../components/Friends';
 import Sidebar from '../components/Sidebar';
 
 interface HomeProps {
-
     user: string
     setUser: React.Dispatch<string>
 };
