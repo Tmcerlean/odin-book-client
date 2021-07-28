@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import SignupForm from '../components/SignupForm';
+import { User } from '../@types/types';
 
 interface SignupProps {
-  user: string
-  setUser: React.Dispatch<any>
+  user: User
+  setUser: React.Dispatch<User>
 };
 
 const Signup: React.FC<SignupProps> = ({ user, setUser }) => {

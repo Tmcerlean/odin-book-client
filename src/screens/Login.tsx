@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import LoginForm from '../components/LoginForm';
+import { User } from '../@types/types';
 
 interface LoginProps {
-    user: string
-    setUser: React.Dispatch<any>
+    user: User
+    setUser: React.Dispatch<User>
 };
 
 const Login: React.FC<LoginProps> = ({ user, setUser }) => {
@@ -15,7 +16,7 @@ const Login: React.FC<LoginProps> = ({ user, setUser }) => {
 
     let history = useHistory();
 
-    if (user) {
+    if (user.email) {
         history.push("/");
     };
 

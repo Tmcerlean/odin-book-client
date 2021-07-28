@@ -14,7 +14,16 @@ import Signup from './screens/Signup';
 
 const App: React.FC = () => {
 
-  const [user, setUser] = useLocalStorage("user", "");
+  const initialUserObject = {
+    email: "",
+    firstName: "",
+    id: "",
+    lastName: "",
+    profileImageUrl: "",
+    token: ""
+  }
+
+  const [user, setUser] = useLocalStorage("user", initialUserObject);
 
   return (
     <div className="App">

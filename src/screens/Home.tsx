@@ -2,17 +2,18 @@ import { useHistory } from "react-router-dom";
 import Feed from '../components/Feed';
 import Friends from '../components/Friends';
 import Sidebar from '../components/Sidebar';
+import { User } from '../@types/types';
 
 interface HomeProps {
-    user: string
-    setUser: React.Dispatch<string>
+    user: User
+    setUser: React.Dispatch<User>
 };
 
 const Home: React.FC<HomeProps> = ({ user, setUser }) => {
 
     let history = useHistory();
 
-    if (!user) {
+    if (!user.email) {
         history.push("/login");
     };
 
