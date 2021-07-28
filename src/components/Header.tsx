@@ -1,4 +1,16 @@
-const Header: React.FC = () => {
+import {useEffect} from 'react';
+
+interface HeaderProps {
+    user: string
+    setUser: React.Dispatch<string>
+};
+
+const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
+
+    useEffect(() => {
+        console.log(user)
+    }, [user])
+
     return (
         <div className="flex sticky top-0 z-50 p-2 bg-white justify-between items-center shadow-md">
             <div className="flex items-center">

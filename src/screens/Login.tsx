@@ -62,6 +62,7 @@ const Login: React.FC<LoginProps> = ({ user, setUser }) => {
             // Save new string to local storage
             localStorage.setItem("user", stringLoggedInUserData);
 
+            // Add user object to state and redirect
             setUser(loggedInUser);
             history.push("/");
         } catch (err) {

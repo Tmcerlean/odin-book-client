@@ -18,7 +18,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Header />
+      <Header user={user} setUser={setUser} />
       <Router>
         <Suspense fallback={<p>Loading ...</p>}>
           <Switch>

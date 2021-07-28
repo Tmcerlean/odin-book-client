@@ -4,7 +4,7 @@ import SignupForm from '../components/SignupForm';
 
 interface SignupProps {
   user: string
-  setUser: React.Dispatch<string>
+  setUser: React.Dispatch<any>
 };
 
 const Signup: React.FC<SignupProps> = ({ user, setUser }) => {
@@ -42,7 +42,7 @@ const Signup: React.FC<SignupProps> = ({ user, setUser }) => {
           return;
         }
 
-        const user = {
+        const newUser = {
           email: jsonUserData.user.email,
           firstName: jsonUserData.user.firstName,
           lastName: jsonUserData.user.lastName,
@@ -52,12 +52,14 @@ const Signup: React.FC<SignupProps> = ({ user, setUser }) => {
         }
 
         // Create new user object to string
-        const stringNewUserData = await JSON.stringify(user);
+        const stringNewUserData = await JSON.stringify(newUser);
         
         // Save new string to local storage
         localStorage.setItem("user", stringNewUserData);
         
-        // history.go(0)
+        // Add user object to state and redirect
+        setUser(newUser);
+        history.push("/");
       } catch (err) {
       //   setSignupErr(true);
       }
