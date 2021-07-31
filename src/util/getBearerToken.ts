@@ -1,16 +1,6 @@
-interface UserObject extends Object {
-    email: string
-    firstName: string
-    lastName: string
-    id: string
-    profileImageUrl: string
-    token: string
-}
-
-const getBearerToken = (userObject: UserObject) => {
-
+const getBearerToken = (jsonUserObject: string) => {
+    const userObject = JSON.parse(jsonUserObject);
     const bearerToken = userObject.token;
-    
     return bearerToken; 
 };
 

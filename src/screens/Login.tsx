@@ -29,7 +29,7 @@ const Login: React.FC<LoginProps> = ({ user, setUser }) => {
 
         try {
             const req = await fetch(
-                "http://localhost:5000/api/login",
+                "http://localhost:5000/api/auth/login",
                 {
                     method: "POST",
                     body: formData,

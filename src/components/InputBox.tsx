@@ -1,10 +1,48 @@
+import { useState } from "react";
 import { CameraIcon } from "@heroicons/react/solid";
+import getBearerToken from "../util/getBearerToken";
 
 const InputBox: React.FC = () => {
 
-    const submitPost = (e: React.FormEvent<HTMLFormElement>) => {
+    const [postContent, setPostContent] = useState("");
+
+    const submitPost = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Do something");
+
+        const data = { content: postContent };
+        const formData = JSON.stringify(data);
+
+        try {
+
+            const userObject = await localStorage.getItem("user") || '';
+            const bearerToken = await getBearerToken(userObject);
+
+            const req = await fetch(
+                "http://localhost:5000/api/posts",
+                {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": bearerToken
+                    }
+                }
+            );
+
+            const jsonPostData = await req.json();
+
+            // Use post data to update current post state
+
+            // Error handling
+            if (req.status !== 200) {
+                // setPostErr(true);
+                return;
+            }
+        } catch (err) {
+            console.log(err)
+            // setPostErr(true);
+        }
     }
 
     return (
@@ -22,6 +60,8 @@ const InputBox: React.FC = () => {
                         type="text" 
                         placeholder="What's your story?"
                         className="rounded-full h-12 bg-gray-100 flex-grow px-5 border-none focus:outline-none"
+                        value={postContent}
+                        onChange={(e) => setPostContent(e.target.value)}
                     />
                 </form>
             </div>
