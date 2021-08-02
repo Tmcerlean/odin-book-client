@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import InputBox from './InputBox';
 import { User } from '../@types/types';
+import getBearerToken from "../util/getBearerToken";
 
 interface FeedProps {
     user: User
@@ -13,9 +14,21 @@ const Feed: React.FC<FeedProps> = ({ user, setUser }) => {
 
     useEffect(() => {
         const getPosts = async () => {
+
+            const userObject = await localStorage.getItem("user") || '';
+            const bearerToken = await getBearerToken(userObject);
+
             try {
                 const req = await fetch(
                     "http://localhost:5000/api/posts",
+                    {
+                        method: "GET",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                            "Authorization": bearerToken
+                        }
+                    }
                 );
                 if (req.status !== 200) {
                     return;
@@ -27,6 +40,10 @@ const Feed: React.FC<FeedProps> = ({ user, setUser }) => {
             }
         };
         getPosts();
+    }, []);
+
+    useEffect(() => {
+        console.log(posts)
     }, []);
 
     return (
