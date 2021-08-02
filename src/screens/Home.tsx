@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Feed from '../components/Feed';
 import Friends from '../components/Friends';
@@ -17,11 +18,15 @@ const Home: React.FC<HomeProps> = ({ user, setUser }) => {
         history.push("/login");
     };
 
+    useEffect(() => {
+        document.title = 'Odinbook';
+    }, []);
+
     return (
         <div className="h-screen bg-gray-100 overflow-hidden">          
             <main className="flex">
                 <Sidebar />
-                <Feed />
+                <Feed user={user} setUser={setUser} />
                 <Friends />
             </main>
         </div>
