@@ -13,7 +13,7 @@ const testFriends = [
 
 const Friends: React.FC = () => {
     return (
-        <div className="hidden lg:flex flex-col w-60 p-2 mt-6">
+        <div className="hidden lg:flex flex-col w-72 p-2 mt-6">
             <div className="flex justify-between items-center text-gray-500 mb-5">
                 <h2 className="text-xl">Contacts</h2>
             </div>   

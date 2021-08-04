@@ -10,7 +10,7 @@ const SidebarRow: React.FC<SidebarRowProps> = ({ src, Icon, title }) => {
     return (
         <div className="flex items-center space-x-2 p-4 hover:bg-gray-200 rounded-xl cursor-pointer">
             {src && (
-                <img className="rounded-full" src={src} alt="" width="30" height="30" />            
+                <img className="rounded-full" src={src} alt="" width="40" height="40" />            
             )}
             {Icon && (
                 <Icon className="h-8 w-8 text-blue-500" />

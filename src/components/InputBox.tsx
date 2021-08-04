@@ -10,7 +10,7 @@ const InputBox: React.FC = () => {
         e.preventDefault();
 
         const data = { content: postContent };
-        const formData = JSON.stringify(data);
+        const formData = JSON.stringify(data);      
 
         try {
 
@@ -66,7 +66,7 @@ const InputBox: React.FC = () => {
                 </form>
             </div>
             <div className="flex justify-center pt-2 border-t">
-                <div className="flex items-center space-x-1 hover:bg-gray-100 flex-grow justify-center rounded-lg cursor-pointer">
+                <div className="flex items-center space-x-1 p-2 hover:bg-gray-100 justify-center rounded-lg cursor-pointer">
                     <CameraIcon className="h-7 text-green-400" />
                     <p className="text-xs sm:text-sm xl:text-base">Add Photo</p>
                 </div>

@@ -11,11 +11,11 @@ const Contact: React.FC<ContactProps> = ({ src, name }) => {
                 className="rounded-full object-cover"
                 src={src}
                 alt=""
-                width={50}
-                height={50}
+                width={40}
+                height={40}
             />
             <p>{name}</p>
-            <div className="absolute bottom-2 left-7 bg-green-400 h-3 w-3 rounded-full"></div>
+            <div className="absolute bottom-2 left-6 bg-green-400 border-2 border-white h-3 w-3 rounded-full"></div>
         </div>
     )
 }
