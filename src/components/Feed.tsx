@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import InputBox from './InputBox';
+import Posts from './Posts';
 import { User } from '../@types/types';
 import getBearerToken from "../util/getBearerToken";
 
@@ -11,6 +12,11 @@ interface FeedProps {
 const Feed: React.FC<FeedProps> = ({ user, setUser }) => {
 
     const [posts, setPosts] = useState();
+
+    useEffect(() => {
+        console.log(posts)
+        console.log(typeof(posts))
+    }, [posts]);
 
     useEffect(() => {
         const getPosts = async () => {
@@ -42,15 +48,11 @@ const Feed: React.FC<FeedProps> = ({ user, setUser }) => {
         getPosts();
     }, []);
 
-    useEffect(() => {
-        console.log(posts)
-    }, []);
-
     return (
         <div className="flex-grow h-screen pb-44 pt-6 mr-4 overflow-y-auto scrollbar-hide">
             <div className="mx-auto max-w-md md:max-w-lg lg:max-w-2xl">
                 <InputBox />
-                {/* Posts */}
+                <Posts posts={posts} />
             </div>    
         </div>
     )

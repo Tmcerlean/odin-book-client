@@ -46,8 +46,8 @@ const InputBox: React.FC = () => {
     }
 
     return (
-        <div className="bg-white mt-6 p-2 rounded-2xl shadow-md text-gray-500 font-medium">
-            <div className="flex space-x-4 p-4 items-center">
+        <div className="bg-white mt-6 p-2 rounded-2xl shadow-sm text-gray-500 font-medium">
+            <div className="flex space-x-4 p-2 items-center">
                 <img 
                     className="rounded-full"
                     src="https://i.ibb.co/42drhRP/mcerleantom-79390488-2535626826491703-1307724872187531610-n-1.jpg"
@@ -65,8 +65,8 @@ const InputBox: React.FC = () => {
                     />
                 </form>
             </div>
-            <div className="flex justify-center p-3 border-t">
-                <div className="flex items-center space-x-1 hover:bg-gray-100 flex-grow justify-center p-2 rounded-xl cursor-pointer">
+            <div className="flex justify-center pt-2 border-t">
+                <div className="flex items-center space-x-1 hover:bg-gray-100 flex-grow justify-center rounded-lg cursor-pointer">
                     <CameraIcon className="h-7 text-green-400" />
                     <p className="text-xs sm:text-sm xl:text-base">Add Photo</p>
                 </div>
