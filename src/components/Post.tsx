@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import formatDistance from "date-fns/formatDistance";
 import { PostObject } from '../@types/types';
 import { ChatIcon, ThumbUpIcon } from "@heroicons/react/outline";
+import getBearerToken from "../util/getBearerToken";
 
 interface PostProps {
     key: string
@@ -9,7 +10,6 @@ interface PostProps {
 };
 
 const Post: React.FC<PostProps> = ({ content }) => {
-
 
     const [commentContent, setCommentContent] = useState("");
 
@@ -19,7 +19,39 @@ const Post: React.FC<PostProps> = ({ content }) => {
 
     const submitPost = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    }
+    };
+
+    const handleToggleLike = async (postId: string) => {
+
+        try {
+
+            const userObject = await localStorage.getItem("user") || '';
+            const bearerToken = await getBearerToken(userObject);
+
+            const req = await fetch(
+                `http://localhost:5000/api/posts/${postId}/like`,
+                {
+                    method: "PUT",
+                    headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": bearerToken
+                    },
+                }
+            );
+
+            // Need to update posts state
+            console.log("working");
+
+        } catch (err) {
+            console.log(err)
+            // setLoginErr(true);
+        }
+    };
+
+    useEffect(() => {
+        console.log(content._id)
+    }, [content]);
 
     return (
         <div className="bg-white mt-4 p-2 rounded-2xl shadow-sm text-black font-medium">
@@ -40,7 +72,10 @@ const Post: React.FC<PostProps> = ({ content }) => {
                 <p className="font-light break-all leading-5">{content.content}</p>
             </div>
             <div className="flex justify-between mt-2 border-t border-b">
-                <div className="flex flex-1 justify-center m-1 p-2 items-center hover:bg-gray-100 cursor-pointer rounded-sm">
+                <div 
+                    className="flex flex-1 justify-center m-1 p-2 items-center hover:bg-gray-100 cursor-pointer rounded-sm"
+                    onClick={() => handleToggleLike(content._id)}
+                >
                     <ThumbUpIcon className="h-5 text-gray-600 mr-1" />
                     <p className="text-xs sm:text-sm xl:text-base text-gray-600">Like</p>
                 </div>
