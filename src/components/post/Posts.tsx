@@ -1,5 +1,5 @@
 import Post from './Post';
-import { PostObject, User } from '../@types/types';
+import { PostObject, User } from '../../@types/types';
 
 interface PostsProps {
     posts?: PostObject[]

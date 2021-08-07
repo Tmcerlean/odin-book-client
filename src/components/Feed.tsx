@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import InputBox from './InputBox';
-import Posts from './Posts';
+import Posts from './post/Posts';
 import { User } from '../@types/types';
 import getBearerToken from "../util/getBearerToken";
 

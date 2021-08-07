@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Feed from '../components/Feed';
 import Friends from '../components/Friends';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/sidebar/Sidebar';
 import { User } from '../@types/types';
 
 interface HomeProps {
