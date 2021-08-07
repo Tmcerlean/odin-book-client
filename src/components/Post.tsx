@@ -14,6 +14,7 @@ interface PostProps {
 const Post: React.FC<PostProps> = ({ content, user }) => {
 
     const [commentContent, setCommentContent] = useState("");
+    const [likes, setLikes] = useState(content.likes.length)
     const [userLikedPost, setUserLikedPost] = useState(false);
 
     const commentInput = useRef<HTMLInputElement>(null);
@@ -23,6 +24,15 @@ const Post: React.FC<PostProps> = ({ content, user }) => {
     const submitPost = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     };
+
+    useEffect(() => {
+        console.log(likes)
+    }, [likes]);
+
+    // useEffect(() => {
+    //     // Set state for number of likes post has
+    //     setLikes(content.likes.length)
+    // }, [content])
 
     useEffect(() => {
         // Set state for whether user has liked post previously
@@ -56,7 +66,8 @@ const Post: React.FC<PostProps> = ({ content, user }) => {
             // Set toggle likes boolean
             setUserLikedPost(prevUserLikedPost => !prevUserLikedPost);
             
-            // Set likes +/- 1
+            // Toggle like value +/- 1
+            userLikedPost ? setLikes(likes - 1) : setLikes(likes + 1);
 
             // Need to update posts state
             console.log("working");
@@ -85,16 +96,24 @@ const Post: React.FC<PostProps> = ({ content, user }) => {
             <div className="flex space-x-4 px-2 items-center">
                 <p className="font-light break-all leading-5">{content.content}</p>
             </div>
+            <div className="flex justify-between mt-2 border-t">
+                <div className="flex flex-1 mt-2 ml-2 font-normal text-sm">
+                    <p className="">{likes === 1 ? `${likes} like` : `${likes} likes`}</p>
+                </div>
+                <div className="flex flex-1 mt-2 mr-2 justify-end font-normal text-sm">
+                    5 comments
+                </div>
+            </div>
             <div className="flex justify-between mt-2 border-t border-b">
                 <div 
-                    className="flex flex-1 justify-center m-1 p-2 items-center hover:bg-gray-100 cursor-pointer rounded-sm"
+                    className="flex flex-1 justify-center m-1 p-2 hover:bg-gray-100 cursor-pointer rounded-sm"
                     onClick={() => handleToggleLike(content._id)}
                 >
                     {userLikedPost ? <ThumbUpIconSolid className="h-5 text-blue-600 mr-1" /> : <ThumbUpIcon className="h-5 text-gray-600 mr-1" />}
-                    <p className="text-xs sm:text-sm xl:text-base text-gray-600">Like</p>
+                    {userLikedPost ? <p className="text-xs sm:text-sm xl:text-base text-blue-600">Like</p> : <p className="text-xs sm:text-sm xl:text-base text-gray-600">Like</p>}
                 </div>
                 <div 
-                    className="flex flex-1 justify-center m-1 p-2 items-center hover:bg-gray-100 cursor-pointer rounded-sm"
+                    className="flex flex-1 justify-center m-1 p-2 hover:bg-gray-100 cursor-pointer rounded-sm"
                     onClick={handleFocus}
                     onKeyDown={(event) => {
                         if (event.key === 'Enter') {
