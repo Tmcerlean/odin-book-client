@@ -1,17 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import formatDistance from "date-fns/formatDistance";
-import { PostObject } from '../@types/types';
+import { PostObject, User } from '../@types/types';
 import { ChatIcon, ThumbUpIcon } from "@heroicons/react/outline";
+import { ThumbUpIcon as ThumbUpIconSolid } from "@heroicons/react/solid";
 import getBearerToken from "../util/getBearerToken";
 
 interface PostProps {
     key: string
     content: PostObject
+    user?: User
 };
 
-const Post: React.FC<PostProps> = ({ content }) => {
+const Post: React.FC<PostProps> = ({ content, user }) => {
 
     const [commentContent, setCommentContent] = useState("");
+    const [userLikedPost, setUserLikedPost] = useState(false);
 
     const commentInput = useRef<HTMLInputElement>(null);
 
@@ -21,10 +24,16 @@ const Post: React.FC<PostProps> = ({ content }) => {
         e.preventDefault();
     };
 
+    useEffect(() => {
+        // Set state for whether user has liked post previously
+        if (user) {
+            content.likes.includes(user.id) ? setUserLikedPost(true) : setUserLikedPost(false)
+        }
+    }, [content, user]);
+
     const handleToggleLike = async (postId: string) => {
 
         try {
-
             const userObject = await localStorage.getItem("user") || '';
             const bearerToken = await getBearerToken(userObject);
 
@@ -40,6 +49,15 @@ const Post: React.FC<PostProps> = ({ content }) => {
                 }
             );
 
+            const jsonPostData = await req.json();
+
+            console.log(jsonPostData);
+
+            // Set toggle likes boolean
+            setUserLikedPost(prevUserLikedPost => !prevUserLikedPost);
+            
+            // Set likes +/- 1
+
             // Need to update posts state
             console.log("working");
 
@@ -48,10 +66,6 @@ const Post: React.FC<PostProps> = ({ content }) => {
             // setLoginErr(true);
         }
     };
-
-    useEffect(() => {
-        console.log(content._id)
-    }, [content]);
 
     return (
         <div className="bg-white mt-4 p-2 rounded-2xl shadow-sm text-black font-medium">
@@ -76,7 +90,7 @@ const Post: React.FC<PostProps> = ({ content }) => {
                     className="flex flex-1 justify-center m-1 p-2 items-center hover:bg-gray-100 cursor-pointer rounded-sm"
                     onClick={() => handleToggleLike(content._id)}
                 >
-                    <ThumbUpIcon className="h-5 text-gray-600 mr-1" />
+                    {userLikedPost ? <ThumbUpIconSolid className="h-5 text-blue-600 mr-1" /> : <ThumbUpIcon className="h-5 text-gray-600 mr-1" />}
                     <p className="text-xs sm:text-sm xl:text-base text-gray-600">Like</p>
                 </div>
                 <div 

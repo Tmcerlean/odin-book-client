@@ -26,7 +26,7 @@ export interface PostObject {
     author: AuthorObject
     comments: object[]
     content: string
-    likes: object[]
+    likes: string[]
     timestamp: string
     __v: number
     _id: string

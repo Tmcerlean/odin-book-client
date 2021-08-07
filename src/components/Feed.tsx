@@ -52,7 +52,7 @@ const Feed: React.FC<FeedProps> = ({ user, setUser }) => {
         <div className="flex-grow h-screen pb-44 pt-6 mr-4 overflow-y-auto scrollbar-hide">
             <div className="mx-auto max-w-md md:max-w-lg lg:max-w-2xl">
                 <InputBox />
-                <Posts posts={posts} />
+                <Posts posts={posts} user={user} />
             </div>    
         </div>
     )
