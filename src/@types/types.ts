@@ -22,9 +22,20 @@ export interface User {
     __proto__: object
 }
 
+export interface CommentObject {
+    author: AuthorObject
+    comment: string
+    likes: string[]
+    post: string
+    timestamp: string
+    __v: number
+    _id: string
+    __proto__: object
+}
+
 export interface PostObject {
     author: AuthorObject
-    comments: object[]
+    comments: CommentObject[]
     content: string
     likes: string[]
     timestamp: string

@@ -11,7 +11,7 @@ interface FeedProps {
 
 const Feed: React.FC<FeedProps> = ({ user, setUser }) => {
 
-    const [posts, setPosts] = useState();
+    const [posts, setPosts] = useState<any>();
 
     useEffect(() => {
         console.log(posts)
@@ -52,7 +52,7 @@ const Feed: React.FC<FeedProps> = ({ user, setUser }) => {
         <div className="flex-grow h-screen pb-44 pt-6 mr-4 overflow-y-auto scrollbar-hide">
             <div className="mx-auto max-w-md md:max-w-lg lg:max-w-2xl">
                 <InputBox />
-                <Posts posts={posts} user={user} />
+                <Posts posts={posts} setPosts={setPosts} user={user} />
             </div>    
         </div>
     )

@@ -10,12 +10,13 @@ import Header from './Header';
 interface PostProps {
     key: string
     content: PostObject
+    posts?: PostObject[]
+    setPosts: React.Dispatch<React.SetStateAction<undefined>>
     user?: User
 };
 
-const Post: React.FC<PostProps> = ({ content, user }) => {
+const Post: React.FC<PostProps> = ({ content, posts, setPosts, user }) => {
 
-    const [commentContent, setCommentContent] = useState("");
     const [commentsQuantity, setCommentsQuantity] = useState(content.comments.length)
     const [likesQuantity, setLikesQuantity] = useState(content.likes.length)
     const [userLikedPost, setUserLikedPost] = useState(false);
@@ -27,6 +28,10 @@ const Post: React.FC<PostProps> = ({ content, user }) => {
     const submitPost = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     };
+
+    useEffect(() => {
+        console.log(content)
+    }, [content])
 
     useEffect(() => {
         // Set state for whether user has liked post previously
@@ -78,7 +83,7 @@ const Post: React.FC<PostProps> = ({ content, user }) => {
             <Content content={content.content} />
             <Data likesQuantity={likesQuantity} commentsQuantity={commentsQuantity} />
             <Actions handleFocus={handleFocus} handleToggleLike={handleToggleLike} userLikedPost={userLikedPost} postId={content._id} />
-            <Comments submitPost={submitPost} commentContent={commentContent} setCommentContent={setCommentContent} commentInput={commentInput} />
+            <Comments postId={content._id} submitPost={submitPost} posts={posts} setPosts={setPosts} commentInput={commentInput} comments={content.comments} />
         </div>
     )
 }
